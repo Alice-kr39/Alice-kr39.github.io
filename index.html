@@ -1,61 +1,49 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="es" data-paleta="naranja">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Cleopatra · Portafolio</title>
+<title>Alicia Carballo  · Portafolio</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
-<style>
-  :root {
-    --fondo: #F6F7F9;
-    --tinta: #16233A;
-    --suave: #5B6577;
-    --linea: #D5DAE3;
-    --acento: #2450E6;
-    --tarjeta: #FFFFFF;
-  }
-  @media (prefers-color-scheme: dark) {
-    :root {
-      --fondo: #10151F;
-      --tinta: #E8ECF3;
-      --suave: #98A2B5;
-      --linea: #2A3446;
-      --acento: #7B9BFF;
-      --tarjeta: #171E2B;
-    }
-  }
-  * { box-sizing: border-box; }
-  body {
-    margin: 0;
-    background: var(--fondo);
-    color: var(--tinta);
-    font-family: "Space Grotesk", system-ui, sans-serif;
-    line-height: 1.6;
-  }
-  a { color: var(--acento); }
-  a:focus-visible { outline: 2px solid var(--acento); outline-offset: 3px; }
-  .wrap { max-width: 960px; margin: 0 auto; padding: 0 20px; }
 
-  header { padding: 72px 0 40px; }
-  h1 { font-size: clamp(2.4rem, 7vw, 4rem); line-height: 1.05; margin: 0 0 16px; font-weight: 700; }
-  header p { max-width: 52ch; color: var(--suave); font-size: 1.1rem; margin: 0; }
-
-  h2 { font-size: 1.4rem; margin: 48px 0 20px; }
-
-  .grid { display: grid; gap: 20px; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); }
-  .proyecto { background: var(--tarjeta); border: 1px solid var(--linea); border-radius: 6px; overflow: hidden; display: flex; flex-direction: column; }
-  .proyecto img, .sin-imagen { width: 100%; aspect-ratio: 16 / 10; object-fit: cover; display: block; background: var(--linea); }
-  .sin-imagen { display: grid; place-items: center; color: var(--suave); font-size: .9rem; }
-  .cuerpo { padding: 16px; display: flex; flex-direction: column; gap: 8px; flex: 1; }
-  .cuerpo h3 { margin: 0; font-size: 1.1rem; }
-  .cuerpo p { margin: 0; color: var(--suave); font-size: .95rem; }
-  .stack { font-size: .85rem; color: var(--suave); margin-top: auto; }
-  .links { display: flex; gap: 16px; font-size: .95rem; font-weight: 500; }
-
-  footer { padding: 56px 0 72px; color: var(--suave); }
-  footer a { margin-right: 16px; }
-</style>
+<style>  
+:root {
+  --fondo: #2B1556; --texto: #F3E8FF; --suave: #C9B3EE;
+  --tarjeta: #E6D2FF; --tinta: #1D0F3B; --tinta-suave: #4B3A73;
+  --link-fondo: #D9B8FF; --link-tarjeta: #5B2BD0;
+}
+html[data-paleta="naranja"] {
+  --fondo: #1C1147; --texto: #FFF3C4; --suave: #FFC06A;
+  --tarjeta: #FFE35A; --tinta: #1C1147; --tinta-suave: #4A3A00;
+  --link-fondo: #FFB347; --link-tarjeta: #B83F00;
+}
+html[data-paleta="turquesa"] {
+  --fondo: #17608F; --texto: #EAFFFB; --suave: #A6F0E6;
+  --tarjeta: #CFFCF1; --tinta: #0B2F4A; --tinta-suave: #1F4F6B;
+  --link-fondo: #7DF9E6; --link-tarjeta: #0B6E8F;
+}
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--fondo); color: var(--texto); font-family: "Space Grotesk", system-ui, sans-serif; line-height: 1.6; }
+.wrap { max-width: 960px; margin: 0 auto; padding: 0 20px; }
+header { padding: 72px 0 40px; }
+h1 { font-size: clamp(2.4rem, 7vw, 4rem); line-height: 1.05; margin: 0 0 16px; font-weight: 700; }
+header p { max-width: 52ch; color: var(--suave); font-size: 1.1rem; margin: 0; }
+h2 { font-size: 1.4rem; margin: 48px 0 20px; }
+.grid { display: grid; gap: 24px; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); }
+.proyecto { background: var(--tarjeta); color: var(--tinta); border: 4px solid #000; border-radius: 14px; overflow: hidden; display: flex; flex-direction: column; }
+.proyecto img, .sin-imagen { width: 100%; aspect-ratio: 16 / 10; object-fit: cover; object-position: top; display: block; border-bottom: 4px solid #000; background: var(--suave); }
+.sin-imagen { display: grid; place-items: center; color: var(--tinta-suave); font-size: .9rem; }
+.cuerpo { padding: 16px; display: flex; flex-direction: column; gap: 8px; flex: 1; }
+.cuerpo h3 { margin: 0; font-size: 1.15rem; }
+.cuerpo p { margin: 0; color: var(--tinta-suave); font-size: .95rem; }
+.stack { font-size: .85rem; font-weight: 500; color: var(--tinta-suave); margin-top: auto; }
+.links { display: flex; gap: 16px; font-weight: 700; }
+.links a { color: var(--link-tarjeta); }
+footer { padding: 56px 0 72px; color: var(--suave); }
+footer a { margin-right: 16px; color: var(--link-fondo); }
+a:focus-visible { outline: 3px solid var(--link-fondo); outline-offset: 3px; }
+.links a:focus-visible { outline-color: var(--link-tarjeta); }
 </head>
 <body>
 
@@ -64,6 +52,8 @@
   <!-- CAMBIA: una sola línea que diga quién eres y qué haces -->
   <p>Matemática que analiza datos y programa. Aquí están mis proyectos de software.</p>
 </header>
+
+  </style>
 
 <main class="wrap">
   <h2>Proyectos</h2>
