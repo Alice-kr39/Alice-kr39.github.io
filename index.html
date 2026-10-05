@@ -44,9 +44,102 @@ footer { padding: 56px 0 72px; color: var(--suave); }
 footer a { margin-right: 16px; color: var(--link-fondo); }
 a:focus-visible { outline: 3px solid var(--link-fondo); outline-offset: 3px; }
 .links a:focus-visible { outline-color: var(--link-tarjeta); }
+
+#fondo { position: fixed; inset: 0; width: 100%; height: 100%; z-index: -1; }
+
+  
 </style>
 </head>
 <body>
+
+  <canvas id="fondo" aria-hidden="true"></canvas>
+
+ <script>
+const lienzo = document.getElementById("fondo");
+const ctx = lienzo.getContext("2d");
+const COLORES = ["#C4A1FF", "#6C7BFF", "#22D3A0", "#FFD23F", "#FF3B5C"];
+const ZONA = 0.7;    // 1 = toda la pantalla, 0.5 = solo la mitad de abajo
+const RADIO = 140;   // alcance del cursor
+const reducir = matchMedia("(prefers-reduced-motion: reduce)").matches;
+const ANG = 0.45, DX = Math.cos(ANG), DY = Math.sin(ANG);
+let trazos = [], raton = { x: -9999, y: -9999 }, animando = false;
+
+function crear() {
+  lienzo.width = innerWidth;
+  lienzo.height = innerHeight;
+  trazos = [];
+  const arriba = innerHeight * (1 - ZONA);
+  const diag = Math.hypot(innerWidth, innerHeight);
+  let fila = 0;
+  for (let k = -diag / 2; k < diag / 2; k += 38, fila++) {
+    const px = innerWidth / 2 - DY * k, py = innerHeight / 2 + DX * k;
+    let t = -diag / 2 - Math.random() * 100, i = fila;
+    while (t < diag / 2) {
+      const len = 60 + Math.random() * 50;
+      const x = px + DX * (t + len / 2), y = py + DY * (t + len / 2);
+      if (x > -60 && x < innerWidth + 60 && y > arriba && y < innerHeight + 60) {
+        trazos.push({ x, y, len, c: COLORES[i % 5], ox: 0, oy: 0, vx: 0, vy: 0 });
+      }
+      t += len + 16;
+      i++;
+    }
+  }
+  dibujar();
+}
+
+function dibujar() {
+  const arriba = innerHeight * (1 - ZONA);
+  ctx.clearRect(0, 0, lienzo.width, lienzo.height);
+  ctx.lineWidth = 14;
+  ctx.lineCap = "round";
+  for (const s of trazos) {
+    const cx = s.x + s.ox, cy = s.y + s.oy, h = s.len / 2;
+    ctx.globalAlpha = 0.6 * Math.min(1, (s.y - arriba) / 120);
+    ctx.strokeStyle = s.c;
+    ctx.beginPath();
+    ctx.moveTo(cx - DX * h, cy - DY * h);
+    ctx.lineTo(cx + DX * h, cy + DY * h);
+    ctx.stroke();
+  }
+}
+
+function mover() {
+  let activo = false;
+  for (const s of trazos) {
+    const dx = s.x + s.ox - raton.x, dy = s.y + s.oy - raton.y;
+    const d = Math.hypot(dx, dy);
+    if (d < RADIO && d > 0) {
+      const f = (1 - d / RADIO) * 3;
+      s.vx += (dx / d) * f;
+      s.vy += (dy / d) * f;
+    }
+    s.vx -= s.ox * 0.06;
+    s.vy -= s.oy * 0.06;
+    s.vx *= 0.85;
+    s.vy *= 0.85;
+    s.ox += s.vx;
+    s.oy += s.vy;
+    if (Math.abs(s.ox) + Math.abs(s.oy) + Math.abs(s.vx) + Math.abs(s.vy) > 0.05) activo = true;
+  }
+  dibujar();
+  if (activo) requestAnimationFrame(mover);
+  else animando = false;
+}
+
+addEventListener("pointermove", e => {
+  raton.x = e.clientX;
+  raton.y = e.clientY;
+  if (!reducir && !animando) {
+    animando = true;
+    requestAnimationFrame(mover);
+  }
+});
+addEventListener("mouseout", e => {
+  if (!e.relatedTarget) raton.x = raton.y = -9999;
+});
+addEventListener("resize", crear);
+crear();
+</script>
 
 <header class="wrap">
   <h1>Cleopatra</h1>
