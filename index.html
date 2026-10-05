@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Cleopatra · Portafolio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --fondo: #F6F7F9;
+    --tinta: #16233A;
+    --suave: #5B6577;
+    --linea: #D5DAE3;
+    --acento: #2450E6;
+    --tarjeta: #FFFFFF;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --fondo: #10151F;
+      --tinta: #E8ECF3;
+      --suave: #98A2B5;
+      --linea: #2A3446;
+      --acento: #7B9BFF;
+      --tarjeta: #171E2B;
+    }
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--fondo);
+    color: var(--tinta);
+    font-family: "Space Grotesk", system-ui, sans-serif;
+    line-height: 1.6;
+  }
+  a { color: var(--acento); }
+  a:focus-visible { outline: 2px solid var(--acento); outline-offset: 3px; }
+  .wrap { max-width: 960px; margin: 0 auto; padding: 0 20px; }
+
+  header { padding: 72px 0 40px; }
+  h1 { font-size: clamp(2.4rem, 7vw, 4rem); line-height: 1.05; margin: 0 0 16px; font-weight: 700; }
+  header p { max-width: 52ch; color: var(--suave); font-size: 1.1rem; margin: 0; }
+
+  h2 { font-size: 1.4rem; margin: 48px 0 20px; }
+
+  .grid { display: grid; gap: 20px; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); }
+  .proyecto { background: var(--tarjeta); border: 1px solid var(--linea); border-radius: 6px; overflow: hidden; display: flex; flex-direction: column; }
+  .proyecto img, .sin-imagen { width: 100%; aspect-ratio: 16 / 10; object-fit: cover; display: block; background: var(--linea); }
+  .sin-imagen { display: grid; place-items: center; color: var(--suave); font-size: .9rem; }
+  .cuerpo { padding: 16px; display: flex; flex-direction: column; gap: 8px; flex: 1; }
+  .cuerpo h3 { margin: 0; font-size: 1.1rem; }
+  .cuerpo p { margin: 0; color: var(--suave); font-size: .95rem; }
+  .stack { font-size: .85rem; color: var(--suave); margin-top: auto; }
+  .links { display: flex; gap: 16px; font-size: .95rem; font-weight: 500; }
+
+  footer { padding: 56px 0 72px; color: var(--suave); }
+  footer a { margin-right: 16px; }
+</style>
+</head>
+<body>
+
+<header class="wrap">
+  <h1>Cleopatra</h1>
+  <!-- CAMBIA: una sola línea que diga quién eres y qué haces -->
+  <p>Matemática que analiza datos y programa. Aquí están mis proyectos de software.</p>
+</header>
+
+<main class="wrap">
+  <h2>Proyectos</h2>
+  <div class="grid">
+
+    <!-- ===== PROYECTO 1 (copia y pega este bloque para agregar más) ===== -->
+    <article class="proyecto">
+      <!-- Imagen: pon el archivo en la carpeta "img" y cambia el nombre. Si no tienes captura aún, borra la línea <img> y deja el div "sin-imagen". -->
+      <div class="sin-imagen">Captura o GIF aquí</div>
+      <!-- <img src="img/proyecto1.png" alt="Captura del proyecto 1"> -->
+      <div class="cuerpo">
+        <h3>Nombre del proyecto 1</h3>
+        <p>Dos líneas: qué hace y para quién sirve.</p>
+        <div class="stack">Python · SQL · Power BI</div>
+        <div class="links">
+          <a href="#">Ver demo</a>
+          <a href="#">Código</a>
+        </div>
+      </div>
+    </article>
+
+    <!-- ===== PROYECTO 2 ===== -->
+    <article class="proyecto">
+      <div class="sin-imagen">Captura o GIF aquí</div>
+      <div class="cuerpo">
+        <h3>Nombre del proyecto 2</h3>
+        <p>Dos líneas: qué hace y para quién sirve.</p>
+        <div class="stack">Tecnologías usadas</div>
+        <div class="links">
+          <a href="#">Ver demo</a>
+          <a href="#">Código</a>
+        </div>
+      </div>
+    </article>
+
+    <!-- ===== PROYECTO 3 ===== -->
+    <article class="proyecto">
+      <div class="sin-imagen">Captura o GIF aquí</div>
+      <div class="cuerpo">
+        <h3>Nombre del proyecto 3</h3>
+        <p>Dos líneas: qué hace y para quién sirve.</p>
+        <div class="stack">Tecnologías usadas</div>
+        <div class="links">
+          <a href="#">Ver demo</a>
+          <a href="#">Código</a>
+        </div>
+      </div>
+    </article>
+
+  </div>
+</main>
+
+<footer class="wrap">
+  <h2 style="margin-top:0">Contacto</h2>
+  <!-- CAMBIA los links por los tuyos -->
+  <a href="https://github.com/TU-USUARIO">GitHub</a>
+  <a href="https://www.linkedin.com/in/TU-PERFIL">LinkedIn</a>
+  <a href="mailto:tu@correo.com">Correo</a>
+</footer>
+
+</body>
+</html>
